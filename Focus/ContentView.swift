@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @Environment(\.modelContext) var context
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        HomeView()
+        .environmentObject(Navigator())
+        .modelContainer(for: [Focus.self, FocusSession.self, EarnedBadge.self, User.self, FocusInterval.self])
     }
 }
 
