@@ -13,7 +13,8 @@ struct DataInitializer {
     static func initializeDefaultUser(context: ModelContext) {
         let fetchDescriptor = FetchDescriptor<User>(sortBy: [SortDescriptor(\.name)])
         if let users = try? context.fetch(fetchDescriptor), users.isEmpty {
-            let defaultUser = User(name: "Shyam", photo: nil)
+            let imageData = UIImage(named: "Image")?.jpegData(compressionQuality: 1.0)
+            let defaultUser = User(name: "Shyam", photo: imageData)
             context.insert(defaultUser)
             do {
                 try context.save()
